@@ -1,21 +1,21 @@
 package com.vicky7230.headlines.data.db
 
-import com.demo.applicationskeleton.data.network.model.DomesticPackage
+import com.demo.applicationskeleton.data.network.model.Results
 import com.vicky7230.headlines.data.db.room.AppDatabase
 import javax.inject.Inject
 
 class AppDbHelper @Inject
 constructor(private val appDatabase: AppDatabase) : DbHelper {
 
-    override fun insertArticles(articles: MutableList<DomesticPackage>): List<Long> {
-        return appDatabase.articleDao().insertArticles(articles)
+    override fun insertData(articles: MutableList<Results>): List<Long> {
+        return appDatabase.articleDao().insertData(articles)
     }
 
-    override fun selectArticles(): List<DomesticPackage> {
-        return appDatabase.articleDao().selectArticles()
+    override fun selectData(): List<Results> {
+        return appDatabase.articleDao().selectData()
     }
 
-    override fun deleteArticles() {
-        appDatabase.articleDao().deleteArticles()
+    override fun deleteData() {
+        appDatabase.articleDao().deleteData()
     }
 }

@@ -3,20 +3,20 @@ package com.demo.applicationskeleton.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.demo.applicationskeleton.data.DataManager
-import com.demo.applicationskeleton.data.network.model.DomesticPackage
+import com.demo.applicationskeleton.data.network.model.Results
 import com.demo.applicationskeleton.data.network.model.WebPackage
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class DomesticPackageViewModel(
+class ResultsViewModel(
         context: Application,
         private val dataManager: DataManager
 )
     : AndroidViewModel(context) {
 
     fun getArticlesFromDatabase(): Observable<WebPackage?> {
-        return Observable.defer { Observable.just(dataManager.selectArticles()) }
-                .map { it: List<DomesticPackage> ->
+        return Observable.defer { Observable.just(dataManager.selectData()) }
+                .map { it: List<Results> ->
                     val headlines: WebPackage? = WebPackage(
                             "OK",
                             20,
@@ -29,9 +29,9 @@ class DomesticPackageViewModel(
     fun getArticlesFromNetwork(): Observable<WebPackage?> {
         return dataManager.getWebPackages()
                 .map { it: WebPackage? ->
-                    if (it?.DOMESTIC_PACKAGE != null) {
-                        dataManager.deleteArticles()
-                        dataManager.insertArticles(it.DOMESTIC_PACKAGE as MutableList<DomesticPackage>)
+                    if (it?.results != null) {
+                        dataManager.deleteData()
+                        dataManager.insertData(it.results as MutableList<Results>)
                     }
                     it
                 }

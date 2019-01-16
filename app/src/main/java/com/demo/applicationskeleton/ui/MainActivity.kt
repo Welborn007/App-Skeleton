@@ -3,13 +3,11 @@ package com.demo.applicationskeleton.ui
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.Toolbar
 import com.demo.applicationskeleton.R
 import com.demo.applicationskeleton.ViewModelFactory
 import com.demo.applicationskeleton.data.DataManager
-import com.demo.applicationskeleton.data.network.model.DomesticPackage
+import com.demo.applicationskeleton.data.network.model.Results
 import com.demo.applicationskeleton.data.network.model.WebPackage
 import dagger.android.AndroidInjection
 import io.reactivex.Observable
@@ -32,18 +30,18 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
     @Inject
     lateinit var articlesAdapter: WebPackageAdapter
 
-    private lateinit var domesticPackageViewModel: DomesticPackageViewModel
+    private lateinit var resultsViewModel: ResultsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        domesticPackageViewModel = ViewModelProviders.of(this,
+        resultsViewModel = ViewModelProviders.of(this,
             ViewModelFactory.getInstance(
                 application,
                 dataManager)
-        ).get(DomesticPackageViewModel::class.java)
+        ).get(ResultsViewModel::class.java)
         articlesAdapter.setCallback(this)
         init()
     }
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
         setSupportActionBar(toolbar as Toolbar?)
 
         refresh_layout.setOnRefreshListener {
-            domesticPackageViewModel.getArticlesFromNetwork()
+            resultsViewModel.getArticlesFromNetwork()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<WebPackage?> {
                     override fun onComplete() {
@@ -66,7 +64,7 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
                     }
 
                     override fun onNext(t: WebPackage) {
-                        articlesAdapter.addItems(t.DOMESTIC_PACKAGE as MutableList<DomesticPackage>?)
+                        articlesAdapter.addItems(t.results as MutableList<Results>?)
                     }
 
                     override fun onError(e: Throwable) {
@@ -85,14 +83,14 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
         )
         article_list.adapter = articlesAdapter
 
-        getArticles()
+        getResults()
 
     }
 
-    private fun getArticles() {
+    private fun getResults() {
         Observable.concat(
-            domesticPackageViewModel.getArticlesFromDatabase(),
-            domesticPackageViewModel.getArticlesFromNetwork()
+            resultsViewModel.getArticlesFromDatabase(),
+            resultsViewModel.getArticlesFromNetwork()
         )
             .observeOn(AndroidSchedulers.mainThread(), true)
             .subscribe(object : Observer<WebPackage?> {
@@ -106,7 +104,7 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
                 }
 
                 override fun onNext(t: WebPackage) {
-                    articlesAdapter.addItems(t.DOMESTIC_PACKAGE as MutableList<DomesticPackage>?)
+                    articlesAdapter.addItems(t.results as MutableList<Results>?)
                 }
 
                 override fun onError(e: Throwable) {

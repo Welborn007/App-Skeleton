@@ -11,7 +11,7 @@ data class WebPackage (
     @SerializedName("totalResults")
     @Expose
     var totalResults: Int? = null,
-    @SerializedName("DOMESTIC_PACKAGE")
+    @SerializedName("results")
     @Expose
-    var DOMESTIC_PACKAGE: List<DomesticPackage>? = null
+    var results: List<Results>? = null
 )

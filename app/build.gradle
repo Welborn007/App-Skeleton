@@ -24,16 +24,16 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
     implementation "androidx.appcompat:appcompat:${versions.supportLibrary}"
-    implementation "androidx.legacy:legacy-support-v4:${versions.supportLibrary}"
-    implementation "androidx.recyclerview:recyclerview:${versions.supportLibrary}"
-    implementation "com.google.android.material:material:${versions.supportLibrary}"
-    implementation "androidx.cardview:cardview:${versions.supportLibrary}"
-    implementation "androidx.vectordrawable:vectordrawable:${versions.supportLibrary}"
-    implementation "androidx.core:core:${versions.supportLibrary}"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
+    implementation 'androidx.core:core:1.0.1'
     implementation "com.jakewharton.timber:timber:${versions.timber}"
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
     implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
@@ -46,11 +46,8 @@ dependencies {
     implementation "com.google.dagger:dagger:${versions.dagger}"
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
     implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    implementation "com.github.bumptech.glide:glide:${versions.glide}"
-    kapt "com.github.bumptech.glide:compiler:${versions.glide}"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${versions.rxbinding}"
     debugImplementation "com.amitshekhar.android:debug-db:${versions.debug_db}"
     implementation "androidx.room:room-runtime:${versions.archComponents}"
@@ -58,10 +55,15 @@ dependencies {
     implementation "androidx.room:room-rxjava2:${versions.archComponents}"
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
     kapt "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
-    implementation "androidx.browser:browser:${versions.supportLibrary}"
+    implementation 'androidx.browser:browser:1.0.0'
     implementation "org.sufficientlysecure:html-textview:${versions.htmlTextview}"
     implementation "com.github.franmontiel:AttributionPresenter:${versions.attributionPresenter}"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.github.bumptech.glide:glide:4.8.0-SNAPSHOT'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0-SNAPSHOT'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.8.0-SNAPSHOT@aar'
+    implementation "com.android.support:support-annotations:28.0.0-alpha3"
+    annotationProcessor 'com.android.support:support-annotations:28.0.0-alpha3'
 }

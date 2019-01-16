@@ -1,6 +1,6 @@
 package com.demo.applicationskeleton.data
 
-import com.demo.applicationskeleton.data.network.model.DomesticPackage
+import com.demo.applicationskeleton.data.network.model.Results
 import com.demo.applicationskeleton.data.network.model.WebPackage
 import com.vicky7230.headlines.data.db.AppDbHelper
 import com.vicky7230.headlines.data.network.AppApiHelper
@@ -13,16 +13,16 @@ class AppDataManager @Inject constructor(private val appApiHelper: AppApiHelper,
         return appApiHelper.getWebPackages()
     }
 
-    override fun insertArticles(articles: MutableList<DomesticPackage>): List<Long> {
-        return appDbHelper.insertArticles(articles)
+    override fun insertData(articles: MutableList<Results>): List<Long> {
+        return appDbHelper.insertData(articles)
     }
 
-    override fun selectArticles(): List<DomesticPackage> {
-        return appDbHelper.selectArticles()
+    override fun selectData(): List<Results> {
+        return appDbHelper.selectData()
     }
 
-    override fun deleteArticles() {
-        appDbHelper.deleteArticles()
+    override fun deleteData() {
+        appDbHelper.deleteData()
     }
 
 }

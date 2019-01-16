@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("webHeaderMenu/getWebPackages/")
+    @GET("api/?results=10")
     fun getWebPackages(): Observable<WebPackage?>
 }

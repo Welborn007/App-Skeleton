@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.VisibleForTesting
 import com.demo.applicationskeleton.data.DataManager
-import com.demo.applicationskeleton.ui.DomesticPackageViewModel
+import com.demo.applicationskeleton.ui.ResultsViewModel
 
 /**
  * A creator is used to inject the product ID into the ViewModel
@@ -20,8 +20,8 @@ class ViewModelFactory private constructor(private val application: Application,
     override fun <T : ViewModel> create(modelClass: Class<T>) =
             with(modelClass) {
                 when {
-                    isAssignableFrom(DomesticPackageViewModel::class.java) ->
-                        DomesticPackageViewModel(application, dataManager)
+                    isAssignableFrom(ResultsViewModel::class.java) ->
+                        ResultsViewModel(application, dataManager)
                     else ->
                         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                 }

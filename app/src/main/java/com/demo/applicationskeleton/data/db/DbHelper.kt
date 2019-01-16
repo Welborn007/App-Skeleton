@@ -1,12 +1,12 @@
 package com.vicky7230.headlines.data.db
 
-import com.demo.applicationskeleton.data.network.model.DomesticPackage
+import com.demo.applicationskeleton.data.network.model.Results
 
 interface DbHelper {
 
-    fun insertArticles(articles: MutableList<DomesticPackage>): List<Long>
+    fun insertData(data: MutableList<Results>): List<Long>
 
-    fun selectArticles(): List<DomesticPackage>
+    fun selectData(): List<Results>
 
-    fun deleteArticles()
+    fun deleteData()
 }

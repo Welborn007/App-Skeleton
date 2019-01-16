@@ -1,16 +1,15 @@
 package com.demo.applicationskeleton.ui
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.demo.applicationskeleton.R
-import com.demo.applicationskeleton.data.network.model.DomesticPackage
+import com.demo.applicationskeleton.data.network.model.Results
 import com.vicky7230.flux.utils.GlideApp
 import kotlinx.android.synthetic.main.webpackage_list_tem.view.*
 
-class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPackage>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class WebPackageAdapter(private val results: MutableList<Results>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     interface Callback {
         fun onArticleClick(url: String)
@@ -22,15 +21,15 @@ class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPac
         this.callback = callback
     }
 
-    fun addItems(articles: MutableList<DomesticPackage>?) {
-        this.domesticPackageData?.clear()
-        articles?.let { this.domesticPackageData?.addAll(it) }
+    fun addItems(articles: MutableList<Results>?) {
+        this.results?.clear()
+        articles?.let { this.results?.addAll(it) }
         notifyDataSetChanged()
     }
 
-    private fun getItem(position: Int): DomesticPackage? {
+    private fun getItem(position: Int): Results? {
         return if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION) {
-            domesticPackageData?.get(position)
+            results?.get(position)
         } else
             null
     }
@@ -47,23 +46,25 @@ class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPac
     }
 
     override fun getItemCount(): Int {
-        return domesticPackageData?.size ?: 0
+        return results?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
-        (holder as ArticleViewHolder).onBind(domesticPackageData?.get(position))
+        (holder as ArticleViewHolder).onBind(results?.get(position))
     }
 
     class ArticleViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        fun onBind(article: DomesticPackage?) {
-            GlideApp
-                    .with(itemView.context)
-                    .load(article?.image)
-                    .transition(withCrossFade())
-                    .fitCenter()
-                    .into(itemView.image)
+        fun onBind(article: Results?) {
+//            GlideApp
+//                    .with(itemView.context)
+//                    .load(article?.image)
+//                    .transition(withCrossFade())
+//                    .fitCenter()
+//                    .into(itemView.image)
 
-            itemView.title.text = article?.name
+            var name = article?.name
+
+            itemView.title.text = name?.first + " " + name?.last
         }
     }
 }

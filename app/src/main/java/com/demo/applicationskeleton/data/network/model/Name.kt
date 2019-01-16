@@ -8,19 +8,23 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.vicky7230.headlines.data.db.room.Converters
 
-@Entity(tableName = "DOMESTIC_PACKAGE")
+@Entity(tableName = "name")
 @TypeConverters(Converters::class)
-data class DomesticPackage(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long,
+data class Name(
 
-    @SerializedName("name")
+    @SerializedName("title")
     @Expose
-    @ColumnInfo(name = "name")
-    var name: String? = null,
+    @ColumnInfo(name = "title")
+    var title: String? = null,
 
-    @SerializedName("image")
+    @SerializedName("first")
     @Expose
-    @ColumnInfo(name = "image")
-    var image: String? = null
+    @ColumnInfo(name = "first")
+    var first: String? = null,
+
+    @SerializedName("last")
+    @Expose
+    @ColumnInfo(name = "last")
+    var last: String? = null
+
 )
