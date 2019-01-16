@@ -1,6 +1,6 @@
 package com.demo.applicationskeleton.ui
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.demo.applicationskeleton.data.network.model.DomesticPackage
 import com.vicky7230.flux.utils.GlideApp
 import kotlinx.android.synthetic.main.webpackage_list_tem.view.*
 
-class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPackage>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPackage>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     interface Callback {
         fun onArticleClick(url: String)
@@ -29,13 +29,13 @@ class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPac
     }
 
     private fun getItem(position: Int): DomesticPackage? {
-        return if (position != RecyclerView.NO_POSITION) {
+        return if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION) {
             domesticPackageData?.get(position)
         } else
             null
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         val articleViewHolder = ArticleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.webpackage_list_tem, parent, false))
         articleViewHolder.itemView.setOnClickListener({
 //            val article: DomesticPackage? = getItem(articleViewHolder.adapterPosition)
@@ -50,11 +50,11 @@ class WebPackageAdapter(private val domesticPackageData: MutableList<DomesticPac
         return domesticPackageData?.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         (holder as ArticleViewHolder).onBind(domesticPackageData?.get(position))
     }
 
-    class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ArticleViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun onBind(article: DomesticPackage?) {
             GlideApp
                     .with(itemView.context)

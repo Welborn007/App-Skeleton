@@ -1,11 +1,11 @@
 package com.demo.applicationskeleton.ui
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.Toolbar
 import com.demo.applicationskeleton.R
 import com.demo.applicationskeleton.ViewModelFactory
 import com.demo.applicationskeleton.data.DataManager
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
     @Inject
-    lateinit var linearLayoutManager: LinearLayoutManager
+    lateinit var linearLayoutManager: androidx.recyclerview.widget.LinearLayoutManager
     @Inject
     lateinit var articlesAdapter: WebPackageAdapter
 
@@ -77,7 +77,12 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
         }
 
         article_list.layoutManager = linearLayoutManager
-        article_list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        article_list.addItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
+                this,
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+            )
+        )
         article_list.adapter = articlesAdapter
 
         getArticles()

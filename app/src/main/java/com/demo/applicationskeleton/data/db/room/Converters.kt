@@ -1,6 +1,6 @@
 package com.vicky7230.headlines.data.db.room
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import com.demo.applicationskeleton.data.network.model.Source
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

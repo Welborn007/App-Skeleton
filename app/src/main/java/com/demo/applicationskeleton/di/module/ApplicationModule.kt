@@ -1,11 +1,11 @@
 package com.demo.applicationskeleton.di.module
 
 import android.app.Application
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import android.content.Context
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import com.demo.applicationskeleton.R
 import com.demo.applicationskeleton.SkeletonApplication
 import com.demo.applicationskeleton.data.AppDataManager

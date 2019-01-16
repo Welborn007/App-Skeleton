@@ -1,7 +1,7 @@
 package com.demo.applicationskeleton.ui
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import com.demo.applicationskeleton.data.DataManager
 import com.demo.applicationskeleton.data.network.model.DomesticPackage
 import com.demo.applicationskeleton.data.network.model.WebPackage

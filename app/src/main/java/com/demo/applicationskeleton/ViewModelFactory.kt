@@ -2,9 +2,9 @@ package com.demo.applicationskeleton
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.support.annotation.VisibleForTesting
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.annotation.VisibleForTesting
 import com.demo.applicationskeleton.data.DataManager
 import com.demo.applicationskeleton.ui.DomesticPackageViewModel
 

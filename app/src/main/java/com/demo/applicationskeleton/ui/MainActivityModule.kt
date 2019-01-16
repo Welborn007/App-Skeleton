@@ -1,7 +1,7 @@
 package com.demo.applicationskeleton.ui
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.applicationskeleton.di.ApplicationContext
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,11 @@ class MainActivityModule{
 }
 
 @Provides
-fun provideLinearLayoutManager(@ApplicationContext context: Context): LinearLayoutManager {
-    return LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+fun provideLinearLayoutManager(@ApplicationContext context: Context): androidx.recyclerview.widget.LinearLayoutManager {
+    return androidx.recyclerview.widget.LinearLayoutManager(
+        context,
+        androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+        false
+    )
 }
 }
