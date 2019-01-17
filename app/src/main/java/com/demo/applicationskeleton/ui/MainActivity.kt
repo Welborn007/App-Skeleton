@@ -1,9 +1,9 @@
 package com.demo.applicationskeleton.ui
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
 import com.demo.applicationskeleton.R
 import com.demo.applicationskeleton.ViewModelFactory
 import com.demo.applicationskeleton.data.DataManager
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
+class MainActivity : AppCompatActivity(),ResultsAdapter.Callback {
 
     @Inject
     lateinit var dataManager: DataManager
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
     @Inject
     lateinit var linearLayoutManager: androidx.recyclerview.widget.LinearLayoutManager
     @Inject
-    lateinit var articlesAdapter: WebPackageAdapter
+    lateinit var articlesAdapter: ResultsAdapter
 
     private lateinit var resultsViewModel: ResultsViewModel
 
@@ -75,12 +75,6 @@ class MainActivity : AppCompatActivity(),WebPackageAdapter.Callback {
         }
 
         article_list.layoutManager = linearLayoutManager
-        article_list.addItemDecoration(
-            androidx.recyclerview.widget.DividerItemDecoration(
-                this,
-                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
-            )
-        )
         article_list.adapter = articlesAdapter
 
         getResults()

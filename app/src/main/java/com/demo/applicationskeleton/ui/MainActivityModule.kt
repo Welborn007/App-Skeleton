@@ -1,7 +1,6 @@
 package com.demo.applicationskeleton.ui
 
 import android.content.Context
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.applicationskeleton.di.ApplicationContext
 import dagger.Module
@@ -11,8 +10,8 @@ import dagger.Provides
 class MainActivityModule{
 
     @Provides
-    fun provideWebPackageAdapter(): WebPackageAdapter {
-    return WebPackageAdapter(ArrayList())
+    fun provideWebPackageAdapter(): ResultsAdapter {
+    return ResultsAdapter(ArrayList())
 }
 
 @Provides

@@ -42,5 +42,35 @@ data class Results(
     @SerializedName("name")
     @Expose
     @ColumnInfo(name = "name")
-    var name: Name? = null
+    var name: Name? = null,
+
+    @SerializedName("location")
+    @Expose
+    @ColumnInfo(name = "location")
+    var location: Location? = null,
+
+    @SerializedName("login")
+    @Expose
+    @ColumnInfo(name = "login")
+    var login: Login? = null,
+
+    @SerializedName("dob")
+    @Expose
+    @ColumnInfo(name = "dob")
+    var dob: DOB? = null,
+
+    @SerializedName("registered")
+    @Expose
+    @ColumnInfo(name = "registered")
+    var registered: Registered? = null,
+
+    @SerializedName("id")
+    @Expose
+    @ColumnInfo(name = "id")
+    var id: ID? = null,
+
+    @SerializedName("picture")
+    @Expose
+    @ColumnInfo(name = "picture")
+    var picture: Picture? = null
 )
