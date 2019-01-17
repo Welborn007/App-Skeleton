@@ -10,12 +10,12 @@ import com.vicky7230.flux.utils.GlideApp
 import kotlinx.android.synthetic.main.list_item_results.view.*
 
 
-
 class ResultsAdapter(private val results: MutableList<Results>?) :
     androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     interface Callback {
-        fun onArticleClick(url: String)
+        fun onArticleClickAccept(stat: Boolean,int: Int)
+        fun onArticleClickReject(stat: Boolean,int: Int)
     }
 
     private var callback: Callback? = null
@@ -42,13 +42,29 @@ class ResultsAdapter(private val results: MutableList<Results>?) :
         viewType: Int
     ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         val articleViewHolder =
-            ArticleViewHolder(LayoutInflater.from(parent.context).inflate(com.demo.applicationskeleton.R.layout.list_item_results, parent, false))
+            ArticleViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    com.demo.applicationskeleton.R.layout.list_item_results,
+                    parent,
+                    false
+                )
+            )
         articleViewHolder.itemView.setOnClickListener({
-            //            val article: DomesticPackage? = getItem(articleViewHolder.adapterPosition)
-//            if (article != null) {
-//                callback?.onArticleClick(article.url ?: "")
-//            }
+
         })
+
+        articleViewHolder.itemView.accept.setOnClickListener({
+            results?.removeAt(articleViewHolder.adapterPosition)
+            notifyItemRemoved(articleViewHolder.adapterPosition)
+            callback?.onArticleClickAccept(true, results!!.size)
+        })
+
+        articleViewHolder.itemView.reject.setOnClickListener({
+            results?.removeAt(articleViewHolder.adapterPosition)
+            notifyItemRemoved(articleViewHolder.adapterPosition)
+            callback?.onArticleClickReject(true,results!!.size)
+        })
+
         return articleViewHolder
     }
 
@@ -70,7 +86,6 @@ class ResultsAdapter(private val results: MutableList<Results>?) :
             GlideApp
                 .with(itemView.context)
                 .load(picture?.large)
-                .transition(withCrossFade())
                 .fitCenter()
                 .apply(requestOption)
                 .into(itemView.image)
@@ -83,6 +98,9 @@ class ResultsAdapter(private val results: MutableList<Results>?) :
             itemView.title.text = FirstName + " " + LastName
 
             itemView.description.text = article?.dob?.age + " yrs, Maharashtrian, Marathi"
+            itemView.location.text = article?.location?.city + " ," + article?.location?.state +
+                    " , Bachelors of Engineering - IT"
+            itemView.designation.text = "Mobile App Developer / Freelancer"
         }
     }
 }
